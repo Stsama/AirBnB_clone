@@ -19,7 +19,7 @@ class BaseModel:
                 updated_at(datetime): current datetime when
                                       an instance is created
         """
-        self.id = str(id)
+        self.id = str(uuid4())
         self.created_at = datetime.today()
         self.updated_at = datetime.today()
         if len(kwargs) != 0:
