@@ -11,13 +11,11 @@ class BaseModel:
     """Represent the basemodel class"""
 
     def __init__(self, *args, **kwargs):
-        """Initialisation of an instance of baseClass
-            Args:
-                id(str): assign with an uuid when an instance is created
-                created_at(datetime): current datetime when
-                                      an instance is created
-                updated_at(datetime): current datetime when
-                                      an instance is created
+        """Initialize a new BaseModel.
+
+        Args:
+            *args (any): Unused.
+            **kwargs (dict): Key/value pairs of attributes.
         """
         self.id = str(uuid4())
         self.created_at = datetime.today()
