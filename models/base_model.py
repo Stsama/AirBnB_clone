@@ -26,6 +26,8 @@ class BaseModel:
                     self.__dict__[k] = datetime.today().isoformat()
                 else:
                     self.__dict__[k] = v
+        else:
+            models.storage.new(self)
 
     def save(self):
         """
@@ -33,6 +35,7 @@ class BaseModel:
             updated_at with the current datetime
         """
         self.updated_at = datetime.today()
+        models.storage.save()
 
     def to_dict(self):
         """
@@ -40,8 +43,8 @@ class BaseModel:
             of __dict__ of the instance
         """
         sdict = self.__dict__.copy()
-        sdict["created_at"] = str(self.created_at.isoformat())
-        sdict["updated_at"] = str(self.updated_at.isoformat())
+        sdict["created_at"] = str(datetime.today().isoformat())
+        sdict["updated_at"] = str(datetime.today().isoformat())
         sdict["__class__"] = self.__class__.__name__
         return sdict
 
