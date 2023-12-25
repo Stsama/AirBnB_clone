@@ -9,19 +9,22 @@ from datetime import datetime
 class BaseModel:
     """Represents a base model"""
 
-    def __init__(self, id=uuid4(), created_at=datetime.today(),
-                 updated_at=datetime.today()):
+    def __init__(self, *args, **kwargs):
         """
             Initialize the Basemodel instance
                 Args:
-                id(string): assign with an uuid when an instance is created
-                created_at(datetime): datetime when an instance is created
-                updated_at(datetime): datetime when an instance is created and
-                it will be updated every time you change your object
+                    *args(list): unused
+                    **kwargs(dict): Dictiopnnary of arguments
         """
-        self.updated_at = updated_at
-        self.id = str(id)
-        self.created_at = created_at
+        self.id = str(uuid4())
+        self.created_at = datetime.today()
+        self.updated_at = datetime.today()
+        if kwargs and kwargs != 0:
+            for k, v in kwargs.items():
+                if k == "created_at" or k == "updated_at":
+                    self.__dict__[k] = datetime.today()
+                else:
+                    self.__dict__[k] = v
 
     def __str__(self):
         """should print: [<class name>] (<self.id>) <self.__dict__>"""
