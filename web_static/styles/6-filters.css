@@ -20,7 +20,7 @@
 .filters button:hover{
     opacity: 90%;
 }
-.locations,.amenities{
+.filters .locations,.filters .amenities{
     display: inline-block;
     width: 25%;
     height: 100%;
