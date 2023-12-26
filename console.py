@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""Defines the HBnB console."""
+
+
 import cmd
 class HBNBCommand(cmd.Cmd):
     """Represents a command class"""
