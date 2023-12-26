@@ -4,7 +4,7 @@
 """Define a base class"""
 from uuid import uuid4
 from datetime import datetime
-
+import models
 
 class BaseModel:
     """Represents a base model"""
@@ -25,6 +25,8 @@ class BaseModel:
                     self.__dict__[k] = datetime.today()
                 else:
                     self.__dict__[k] = v
+        else:
+            models.storage.new(self)
 
     def __str__(self):
         """should print: [<class name>] (<self.id>) <self.__dict__>"""
@@ -37,6 +39,7 @@ class BaseModel:
             with the current datetime
         """
         self.updated_at = datetime.today()
+        models.storage.save()
 
     def to_dict(self):
         """
